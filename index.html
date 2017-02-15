@@ -26,9 +26,10 @@
             left: 15px;
             font-size: 1.8em;
             font-family: "Lora", serif;
+            color: #cb914b;
             letter-spacing: .04em;
             padding: 10px 15px;
-            background: rgba(256, 256, 256, .8);
+            background: rgba(233, 236, 220, 1);
             border: 1px solid grey;
             border-radius: 3px;
             z-index: 800;
@@ -36,6 +37,7 @@
         h2 {
             font-family: "Lora", serif;
             letter-spacing: .04em;
+            color: #cb914b; 
             font-size: 1.2em;
             line-height: 1.5em;
         }
@@ -59,7 +61,7 @@
             width: 280px;
             margin: 20px auto;
             padding: 0 15px;
-            background: rgba(256, 256, 256, .8);
+            background: rgba(233, 236, 220, 1); 
             border: 1px solid grey;
             border-radius: 3px;
             z-index: 800;
@@ -82,7 +84,7 @@
         #legend-large, #legend-small {
             border: 2px solid grey;
             border-radius: 50%;
-            background: whitesmoke;
+            background: #E9ECDC;
             position: absolute;
         }
         #legend-large-label, #legend-small-label {
@@ -126,10 +128,10 @@
         var map = L.map('map', options);
         L.control.zoom({ position: 'topright'}).addTo(map);
         
-         map.fitWorld().zoomIn();
+        map.fitWorld().zoomIn();
 
         map.on('resize', function(e) {
-        map.fitWorld({reset: true}).zoomIn();
+        //map.fitWorld({reset: true}).zoomIn();
             });
         
         var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
@@ -137,7 +139,7 @@
             subdomains: 'abcd',
             maxZoom: 19
         }).addTo(map);
-        $.getJSON('data/loc2.json', function (data) {
+        $.getJSON('data/research.json', function (data) {
             console.log(data);
             drawMap(data);
         });
@@ -175,7 +177,7 @@
             layer.on({
                 mouseover: function () {
                     layer.setStyle({
-                        color: "yellow",
+                        color: '#b68243',
                         weight: 3
                     });
                 },
