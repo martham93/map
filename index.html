@@ -30,7 +30,8 @@
             letter-spacing: .04em;
             padding: 10px 15px;
             background: rgba(233, 236, 220, 1);
-            border: 1px solid grey;
+            border: 1px solid #0d5310;
+                
             border-radius: 3px;
             z-index: 800;
         }
@@ -62,7 +63,7 @@
             margin: 20px auto;
             padding: 0 15px;
             background: rgba(233, 236, 220, 1); 
-            border: 1px solid grey;
+            border: 1px solid #0d5310;
             border-radius: 3px;
             z-index: 800;
         }
@@ -98,7 +99,7 @@
         }
         
         .leaflet-tooltip{
-            width: 500px;
+            min-width: 175px;
             white-space: normal; 
         }
     </style>
@@ -131,7 +132,6 @@
         map.fitWorld().zoomIn();
 
         map.on('resize', function(e) {
-        //map.fitWorld({reset: true}).zoomIn();
             });
         
         var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
@@ -150,12 +150,8 @@
                 onEachFeature: onEachFeature
             }
             L.geoJson(data, options).addTo(map);
-             drawLegend(data)
         }
         function pointToLayer(feature, latlng) {
-            // function will take Point Feature geometry
-            // and convert to a Leaflet layer by returning
-            // a Leaflet marker or SVG such as circle or circleMarker
             return L.circleMarker(latlng, {
                 radius: 7
             });
@@ -190,8 +186,24 @@
                 
             });
             
-            var toolTipInfo = "Name: " + feature.properties.name + "<br>" +
-                "Research Summary: "  + feature.properties.description + "<br>" 
+            var toolTipInfo = "<b><u>Name: </b></u>" + feature.properties.name
+            if (feature.properties.description)
+            {
+                toolTipInfo +=  "<br>" + "<b><u>Research Summary: </b></u>"  + feature.properties.description + "<br>" 
+            }
+            
+            if (feature.properties.Supporting_Faculty)
+            {
+                toolTipInfo += "<br>" + "<b><u>Supporting Faculty: </b></u>" +
+                feature.properties.Supporting_Faculty + "<br>"
+            }
+            
+            if (feature.properties.Supporting_Grad)
+            {
+                toolTipInfo += "<br>" + "<b><u>Supporting Graduate Student: </b></u>" +
+                feature.properties.Supporting_Grad + "<br>"
+            }
+        
             layer.bindTooltip(toolTipInfo, { sticky: true});
         }
 
