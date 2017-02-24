@@ -87,7 +87,9 @@
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script>
         var options = {
-           zoomControl: false 
+           zoomControl: false, 
+            noWrap: true,
+            continuousWorld: false
         }
     
         
@@ -104,10 +106,12 @@
         var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             subdomains: 'abcd',
-            maxZoom: 8
+            maxZoom: 8, 
+            bounds: [[-90, -180],[90, 180]],
+            noWrap: true
         }).addTo(map);
         
-         $.getJSON('data/research_locations.json', function (data) {
+         $.getJSON('data/research_3.json', function (data) {
             console.log(data);
             drawMap(data);
         });
