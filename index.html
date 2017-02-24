@@ -82,15 +82,18 @@
 
     </section>
 
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script>
         var options = {
-           zoomControl: true
+           zoomControl: false 
         }
     
         
         var map = L.map('map', options);
+        
+        
         L.control.zoom({ position: 'topright'}).addTo(map);
         
         map.fitWorld().zoomIn();
@@ -103,10 +106,12 @@
             subdomains: 'abcd',
             maxZoom: 19
         }).addTo(map);
-        $.getJSON('data/research_feb22.json', function (data) {
+        
+         $.getJSON('data/research_locations.json', function (data) {
             console.log(data);
             drawMap(data);
         });
+        
         function drawMap(data) {
             var options = {
                 pointToLayer: pointToLayer,
