@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
-  
+    
 
     <style>
         body {
@@ -108,16 +109,33 @@
 
         map.on('resize', function(e) {
             });
-    
+                 
         
         var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             subdomains: 'abcd',
             maxZoom: 8, 
             bounds: [[-90, -180],[90, 180]],
-            noWrap: true
+            noWrap: false
         }).addTo(map);
         
+        
+        
+        L.easyButton({
+        id: 'id-for-the-button',  
+        position: 'topright',     
+        type: 'replace',          
+        leafletClasses: true,    
+        states:[{                 
+        stateName: 'get-center',
+        onClick: function(btn, map){
+        map.setView([50, -0.09],2);
+        },
+        icon: 'fa-location-arrow'
+        }]
+        }).addTo(map);
+
+       
          $.getJSON('data/research_final.json', function (data) {
             console.log(data);
             drawMap(data);
@@ -136,6 +154,7 @@
                 radius: 7
             });
         }
+    
         function style(feature) {
             var styleOptions = {
                 fillOpacity: .6,
