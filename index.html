@@ -4,7 +4,7 @@
 <head>
     <meta charset=utf-8 />
     <title>CU Boulder Geography Department Research</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta name='viewport' content= 'width=device-width, initial-scale=1,user-scalable=yes' />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
@@ -114,9 +114,10 @@
         var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             subdomains: 'abcd',
-            maxZoom: 8, 
+            minZoom: 2,
+            maxZoom: 8,
             bounds: [[-90, -180],[90, 180]],
-            noWrap: false
+            noWrap: true
         }).addTo(map);
         
         
