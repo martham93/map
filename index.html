@@ -27,7 +27,7 @@
             margin-top: 0;
             top: 10px;
             left: 15px;
-            font-size: 1.8em;
+            font-size: 1.8m;
             font-family: "Lora", serif;
             color: #cb914b;
             letter-spacing: .04em;
@@ -43,7 +43,7 @@
             letter-spacing: .04em;
             color: #cb914b; 
             font-size: 1.2em;
-            line-height: 1.5em;
+            line-height: 1.2em;
         }
 
        html, body #map {
@@ -57,7 +57,7 @@
             position: absolute;
             bottom: 0;
             left: 15px;
-            width: 280px;
+            max-width: 280px;
             margin: 20px auto;
             padding: 0 15px;
             background: rgba(233, 236, 220, 1); 
@@ -72,10 +72,22 @@
         }
         
 
-        @media screen and (max-width: 760px) {
-            #header {
-        position: static
-  }
+        @media screen and (max-width: 800px) {
+            h1 {
+            width: 70vw;
+            font-size: 1.2em;  
+            }
+            
+            #side-panel {
+                left: 5px;
+                right: 5px;
+                margin: 0;
+                
+            }
+            #side-panel h2, #side-panel p{
+                margin:5px 0;
+                
+            }
 }
 
         @-ms-viewport{
